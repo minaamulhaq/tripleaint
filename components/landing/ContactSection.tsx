@@ -1,0 +1,309 @@
+"use client";
+
+import React, { useState } from "react";
+import Reveal from "./Reveal";
+import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldAlert, Globe } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    country: "",
+    category: "",
+    message: "",
+    honeypot: "", // Honeypot field for spam prevention
+  });
+
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const validate = () => {
+    const tempErrors: { [key: string]: string } = {};
+    if (!formData.name.trim()) tempErrors.name = "Company/Contact name is required";
+    if (!formData.email.trim()) {
+      tempErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      tempErrors.email = "Please enter a valid email";
+    }
+    if (!formData.country.trim()) tempErrors.country = "Destination country is required";
+    if (!formData.message.trim()) tempErrors.message = "Message details are required";
+    
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
+    
+    // Check honeypot - if filled, silently fail (bots fill everything)
+    if (formData.honeypot) {
+      setStatus("success");
+      return;
+    }
+
+    setStatus("loading");
+    
+    // Mock API delay
+    setTimeout(() => {
+      setStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        country: "",
+        category: "",
+        message: "",
+        honeypot: "",
+      });
+    }, 1500);
+  };
+
+  return (
+    <section id="contact" className="py-24 md:py-32 bg-[#0B1B2B] text-white relative">
+      {/* Visual background details */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E8732E]/5 rounded-full blur-[140px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-10 z-10 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          {/* Left Column: Form */}
+          <div className="lg:col-span-7 bg-[#1A2A3A] p-8 md:p-10 rounded-2xl border border-white/5 shadow-2xl">
+            <Reveal y={20}>
+              <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Direct Quotation</span>
+              <h3 className="font-display font-black text-2xl md:text-3xl text-white mb-6">
+                Submit an Export Inquiry
+              </h3>
+              <p className="text-white/60 text-xs md:text-sm mb-8">
+                Receive shipping estimates, CIF rates, and inspection validation. Our coordinators respond within 4 business hours.
+              </p>
+            </Reveal>
+
+            {status === "success" ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-[#2E9E5B]/10 border border-[#2E9E5B]/30 rounded-xl p-8 text-center flex flex-col items-center justify-center"
+              >
+                <CheckCircle2 className="w-16 h-16 text-[#2E9E5B] mb-4" />
+                <h4 className="font-display font-bold text-lg text-white">Inquiry Received Successfully</h4>
+                <p className="text-sm text-white/70 mt-2 max-w-sm">
+                  We have assigned your request to our regional export coordinator. Check your inbox and WhatsApp/Line shortly.
+                </p>
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="mt-6 text-xs text-[#E8732E] border-b border-[#E8732E] pb-0.5 font-bold uppercase tracking-wider hover:text-white hover:border-white transition-colors"
+                >
+                  Submit Another Request
+                </button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                
+                {/* Honeypot field (hidden from users, exposed to spam bots) */}
+                <input
+                  type="text"
+                  name="honeypot"
+                  value={formData.honeypot}
+                  onChange={(e) => setFormData({ ...formData, honeypot: e.target.value })}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="company-name" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
+                      Company / Full Name <span className="text-[#E8732E]">*</span>
+                    </label>
+                    <input
+                      id="company-name"
+                      type="text"
+                      placeholder="e.g. Rift Valley Imports Ltd"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                    />
+                    {errors.name && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.name}</p>}
+                  </div>
+
+                  <div>
+                    <label htmlFor="email-address" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
+                      Email Address <span className="text-[#E8732E]">*</span>
+                    </label>
+                    <input
+                      id="email-address"
+                      type="email"
+                      placeholder="buyer@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                    />
+                    {errors.email && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.email}</p>}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="whatsapp-phone" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
+                      Phone / WhatsApp Number
+                    </label>
+                    <input
+                      id="whatsapp-phone"
+                      type="text"
+                      placeholder="+254 700 000 000"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="destination-port" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
+                      Destination Port & Country <span className="text-[#E8732E]">*</span>
+                    </label>
+                    <input
+                      id="destination-port"
+                      type="text"
+                      placeholder="Mombasa, Kenya"
+                      value={formData.country}
+                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                    />
+                    {errors.country && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.country}</p>}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="machinery-type" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
+                    Inquiry Category
+                  </label>
+                  <select
+                    id="machinery-type"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all appearance-none"
+                  >
+                    <option value="">Select Category...</option>
+                    <option value="cars">Used Vehicles (Passenger / Trucks)</option>
+                    <option value="tractors">Used Tractors & Agricultural Machinery</option>
+                    <option value="construction">Heavy Machinery (Excavators, Loaders)</option>
+                    <option value="container">Bulk Engine & Dismantled Parts Container</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="message-details" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
+                    Purchase Details / Model Specifications <span className="text-[#E8732E]">*</span>
+                  </label>
+                  <textarea
+                    id="message-details"
+                    rows={4}
+                    placeholder="Specify model numbers, target year range, and quantity (e.g. 3x Kubota L5018 tractors with rotary tillers shipped CIF Mombasa Port)"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                  />
+                  {errors.message && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.message}</p>}
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="w-full bg-[#E8732E] hover:bg-[#d65f1c] disabled:bg-[#E8732E]/50 text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#E8732E]/10"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Securing quote route...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4.5 h-4.5" /> Submit RFQ Sourcing Request
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+
+          {/* Right Column: Info & Offices */}
+          <div className="lg:col-span-5 flex flex-col justify-between">
+            <div>
+              <Reveal y={20}>
+                <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Corporate Directory</span>
+                <h3 className="font-display font-black text-2xl md:text-3xl text-white mb-6">
+                  Physical Office Yard Hubs
+                </h3>
+                <p className="text-white/60 text-sm mb-8 leading-relaxed">
+                  We own physical logistics yards where you can inspect items or coordinate packing directly.
+                </p>
+              </Reveal>
+
+              <div className="space-y-6">
+                {/* JP Office */}
+                <Reveal y={15} delay={0.1}>
+                  <div className="bg-[#1A2A3A] p-5 rounded-xl border border-white/5 flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[#E8732E]/10 text-[#E8732E] flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-white">Japan Tokyo Yard HQ</h4>
+                      <p className="text-xs text-white/50 mt-1 leading-relaxed">
+                        Chiyoda-ku, Kanda Jimbocho, Tokyo, Japan<br />
+                        Yard: Nagoya Port Processing Area
+                      </p>
+                      <div className="flex gap-4 mt-3 text-xs text-white/70">
+                        <span className="flex items-center gap-1"><Phone className="w-3.5 h-3.5 text-[#E8732E]" /> +81 3 5555 0192</span>
+                        <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-[#E8732E]" /> jp@apex-export.com</span>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+
+                {/* TW Office */}
+                <Reveal y={15} delay={0.2}>
+                  <div className="bg-[#1A2A3A] p-5 rounded-xl border border-white/5 flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[#3FA9A0]/10 text-[#3FA9A0] flex items-center justify-center mt-0.5 flex-shrink-0">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-white">Taiwan Taipei Port HQ</h4>
+                      <p className="text-xs text-white/50 mt-1 leading-relaxed">
+                        Zhongzheng District, Taipei City, Taiwan<br />
+                        Yard: Keelung Port Container terminal
+                      </p>
+                      <div className="flex gap-4 mt-3 text-xs text-white/70">
+                        <span className="flex items-center gap-1"><Phone className="w-3.5 h-3.5 text-[#3FA9A0]" /> +886 2 2777 0199</span>
+                        <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-[#3FA9A0]" /> tw@apex-export.com</span>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              </div>
+            </div>
+
+            {/* Certifications footer badge */}
+            <div className="mt-12 lg:mt-0 p-5 bg-[#3FA9A0]/10 border border-[#3FA9A0]/20 rounded-xl flex gap-3.5 items-center">
+              <Globe className="w-8 h-8 text-[#3FA9A0] flex-shrink-0" />
+              <div>
+                <h5 className="font-bold text-xs text-white">Bonded Customs Exporter</h5>
+                <p className="text-[10px] text-white/60 mt-0.5">Licensed under Ministry of Transportation and Tourism (JP) & Ministry of Economic Affairs (TW).</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
