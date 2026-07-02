@@ -34,17 +34,17 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section id="how-to-buy" className="py-24 md:py-32 bg-[#F6F7F5] text-[#101417]">
+    <section id="how-to-buy" className="py-24 md:py-32 bg-brand-off-white text-brand-black">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-20">
           <Reveal y={20}>
-            <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Clear Purchasing Protocol</span>
-            <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-[#0B1B2B] mb-5">
+            <span className="text-xs font-semibold text-brand-red uppercase tracking-widest block mb-3">Clear Purchasing Protocol</span>
+            <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-brand-black mb-5">
               Four Steps to Secure Global Port Delivery
             </h2>
-            <p className="text-[#5C6670] text-base">
+            <p className="text-brand-muted text-base">
               Sending capital across oceans requires confidence. We protect our international buyers with a transparent, legally documented contract process.
             </p>
           </Reveal>
@@ -53,8 +53,32 @@ export default function ProcessSteps() {
         {/* Process Stepper */}
         <div className="relative">
           
-          {/* Horizontal Connector Line (Desktop Only) */}
-          <div className="hidden lg:block absolute top-[44px] left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-[#E8732E] via-[#3FA9A0] to-[#0B1B2B] opacity-30 z-0" />
+          {/* Animated Curved Arrow (Desktop Only) */}
+          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-12 z-0 overflow-visible pointer-events-none text-brand-red">
+            <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1000 50">
+              <motion.path 
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+                d="M0,25 Q250,50 500,25 T1000,25" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeDasharray="6 6"
+                className="opacity-50"
+              />
+              <motion.polygon
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: 1.4, duration: 0.2 }}
+                points="990,15 1000,25 990,35"
+                fill="currentColor"
+                className="opacity-80"
+              />
+            </svg>
+          </div>
 
           {/* Steps Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 relative z-10">
@@ -64,22 +88,22 @@ export default function ProcessSteps() {
                   
                   {/* Step Icon & Number Badge */}
                   <div className="relative mb-6">
-                    <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-md flex items-center justify-center text-[#0B1B2B] group-hover:scale-105 group-hover:border-[#E8732E]/30 transition-all duration-300 relative">
-                      <step.icon className="w-8 h-8 text-[#0B1B2B] group-hover:text-[#E8732E] transition-colors" />
+                    <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-md flex items-center justify-center text-brand-black group-hover:scale-105 group-hover:border-brand-red/30 transition-all duration-300 relative">
+                      <step.icon className="w-8 h-8 text-brand-black group-hover:text-brand-red transition-colors" />
                       
                       {/* Step Number Circle */}
-                      <span className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-[#0B1B2B] text-white font-mono text-xs font-black flex items-center justify-center border-2 border-white shadow shadow-black/10">
+                      <span className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-brand-black text-white font-mono text-xs font-black flex items-center justify-center border-2 border-white shadow shadow-black/10">
                         {step.num}
                       </span>
                     </div>
                   </div>
 
                   {/* Text details */}
-                  <h3 className="font-display font-black text-lg text-[#0B1B2B] mb-3 group-hover:text-[#E8732E] transition-colors">
+                  <h3 className="font-display font-black text-lg text-brand-black mb-3 group-hover:text-brand-red transition-colors">
                     {step.title}
                   </h3>
                   
-                  <p className="text-xs md:text-sm text-[#5C6670] leading-relaxed max-w-xs">
+                  <p className="text-xs md:text-sm text-brand-muted leading-relaxed max-w-xs">
                     {step.desc}
                   </p>
 

@@ -62,19 +62,19 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[#0B1B2B] text-white relative">
+    <section id="contact" className="py-24 md:py-32 bg-brand-black text-white relative overflow-hidden">
       {/* Visual background details */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E8732E]/5 rounded-full blur-[140px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-red/5 rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 z-10 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
           {/* Left Column: Form */}
-          <div className="lg:col-span-7 bg-[#1A2A3A] p-8 md:p-10 rounded-2xl border border-white/5 shadow-2xl">
+          <div className="lg:col-span-7 bg-brand-carbon p-8 md:p-10 rounded-2xl border border-white/5 shadow-2xl">
             <Reveal y={20}>
-              <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Direct Quotation</span>
+              <span className="text-xs font-semibold text-brand-red uppercase tracking-widest block mb-3">Direct Quotation</span>
               <h3 className="font-display font-black text-2xl md:text-3xl text-white mb-6">
                 Submit an Export Inquiry
               </h3>
@@ -96,7 +96,7 @@ export default function ContactSection() {
                 </p>
                 <button
                   onClick={() => setStatus("idle")}
-                  className="mt-6 text-xs text-[#E8732E] border-b border-[#E8732E] pb-0.5 font-bold uppercase tracking-wider hover:text-white hover:border-white transition-colors"
+                  className="mt-6 text-xs text-brand-red border-b border-brand-red pb-0.5 font-bold uppercase tracking-wider hover:text-white hover:border-white transition-colors"
                 >
                   Submit Another Request
                 </button>
@@ -118,7 +118,7 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="company-name" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
-                      Company / Full Name <span className="text-[#E8732E]">*</span>
+                      Company / Full Name <span className="text-brand-red">*</span>
                     </label>
                     <input
                       id="company-name"
@@ -126,14 +126,14 @@ export default function ContactSection() {
                       placeholder="e.g. Rift Valley Imports Ltd"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                      className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all"
                     />
                     {errors.name && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.name}</p>}
                   </div>
 
                   <div>
                     <label htmlFor="email-address" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
-                      Email Address <span className="text-[#E8732E]">*</span>
+                      Email Address <span className="text-brand-red">*</span>
                     </label>
                     <input
                       id="email-address"
@@ -141,7 +141,7 @@ export default function ContactSection() {
                       placeholder="buyer@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                      className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all"
                     />
                     {errors.email && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.email}</p>}
                   </div>
@@ -158,13 +158,13 @@ export default function ContactSection() {
                       placeholder="+254 700 000 000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                      className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all"
                     />
                   </div>
 
                   <div>
                     <label htmlFor="destination-port" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
-                      Destination Port & Country <span className="text-[#E8732E]">*</span>
+                      Destination Port & Country <span className="text-brand-red">*</span>
                     </label>
                     <input
                       id="destination-port"
@@ -172,7 +172,7 @@ export default function ContactSection() {
                       placeholder="Mombasa, Kenya"
                       value={formData.country}
                       onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                      className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all"
                     />
                     {errors.country && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.country}</p>}
                   </div>
@@ -186,7 +186,7 @@ export default function ContactSection() {
                     id="machinery-type"
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all appearance-none"
+                    className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all appearance-none"
                   >
                     <option value="">Select Category...</option>
                     <option value="cars">Used Vehicles (Passenger / Trucks)</option>
@@ -198,7 +198,7 @@ export default function ContactSection() {
 
                 <div>
                   <label htmlFor="message-details" className="block text-xs font-bold uppercase tracking-wider text-white/50 mb-2">
-                    Purchase Details / Model Specifications <span className="text-[#E8732E]">*</span>
+                    Purchase Details / Model Specifications <span className="text-brand-red">*</span>
                   </label>
                   <textarea
                     id="message-details"
@@ -206,7 +206,7 @@ export default function ContactSection() {
                     placeholder="Specify model numbers, target year range, and quantity (e.g. 3x Kubota L5018 tractors with rotary tillers shipped CIF Mombasa Port)"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all"
+                    className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all"
                   />
                   {errors.message && <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1"><ShieldAlert className="w-3.5 h-3.5" /> {errors.message}</p>}
                 </div>
@@ -215,7 +215,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full bg-[#E8732E] hover:bg-[#d65f1c] disabled:bg-[#E8732E]/50 text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-[#E8732E]/10"
+                    className="w-full bg-brand-red hover:bg-brand-red-dark disabled:bg-brand-red/50 text-white font-bold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-lg shadow-brand-red/10"
                   >
                     {status === "loading" ? (
                       <>
@@ -240,7 +240,7 @@ export default function ContactSection() {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <Reveal y={20}>
-                <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Corporate Directory</span>
+                <span className="text-xs font-semibold text-brand-red uppercase tracking-widest block mb-3">Corporate Directory</span>
                 <h3 className="font-display font-black text-2xl md:text-3xl text-white mb-6">
                   Physical Office Yard Hubs
                 </h3>
@@ -250,30 +250,11 @@ export default function ContactSection() {
               </Reveal>
 
               <div className="space-y-6">
-                {/* JP Office */}
-                <Reveal y={15} delay={0.1}>
-                  <div className="bg-[#1A2A3A] p-5 rounded-xl border border-white/5 flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#E8732E]/10 text-[#E8732E] flex items-center justify-center mt-0.5 flex-shrink-0">
-                      <MapPin className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-sm text-white">Japan Tokyo Yard HQ</h4>
-                      <p className="text-xs text-white/50 mt-1 leading-relaxed">
-                        Chiyoda-ku, Kanda Jimbocho, Tokyo, Japan<br />
-                        Yard: Nagoya Port Processing Area
-                      </p>
-                      <div className="flex gap-4 mt-3 text-xs text-white/70">
-                        <span className="flex items-center gap-1"><Phone className="w-3.5 h-3.5 text-[#E8732E]" /> +81 3 5555 0192</span>
-                        <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-[#E8732E]" /> jp@apex-export.com</span>
-                      </div>
-                    </div>
-                  </div>
-                </Reveal>
 
                 {/* TW Office */}
                 <Reveal y={15} delay={0.2}>
-                  <div className="bg-[#1A2A3A] p-5 rounded-xl border border-white/5 flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-[#3FA9A0]/10 text-[#3FA9A0] flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <div className="bg-brand-carbon p-5 rounded-xl border border-white/5 flex gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-brand-silver/10 text-brand-silver flex items-center justify-center mt-0.5 flex-shrink-0">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
@@ -283,8 +264,8 @@ export default function ContactSection() {
                         Yard: Keelung Port Container terminal
                       </p>
                       <div className="flex gap-4 mt-3 text-xs text-white/70">
-                        <span className="flex items-center gap-1"><Phone className="w-3.5 h-3.5 text-[#3FA9A0]" /> +886 2 2777 0199</span>
-                        <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-[#3FA9A0]" /> tw@apex-export.com</span>
+                        <span className="flex items-center gap-1"><Phone className="w-3.5 h-3.5 text-brand-silver" /> +886 2 2777 0199</span>
+                        <span className="flex items-center gap-1"><Mail className="w-3.5 h-3.5 text-brand-silver" /> tw@triple-a-intl.com</span>
                       </div>
                     </div>
                   </div>
@@ -293,8 +274,8 @@ export default function ContactSection() {
             </div>
 
             {/* Certifications footer badge */}
-            <div className="mt-12 lg:mt-0 p-5 bg-[#3FA9A0]/10 border border-[#3FA9A0]/20 rounded-xl flex gap-3.5 items-center">
-              <Globe className="w-8 h-8 text-[#3FA9A0] flex-shrink-0" />
+            <div className="mt-12 lg:mt-0 p-5 bg-brand-silver/10 border border-brand-silver/20 rounded-xl flex gap-3.5 items-center">
+              <Globe className="w-8 h-8 text-brand-silver flex-shrink-0" />
               <div>
                 <h5 className="font-bold text-xs text-white">Bonded Customs Exporter</h5>
                 <p className="text-[10px] text-white/60 mt-0.5">Licensed under Ministry of Transportation and Tourism (JP) & Ministry of Economic Affairs (TW).</p>

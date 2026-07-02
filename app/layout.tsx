@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Inter, Sora, Barlow } from "next/font/google";
 import "./globals.css";
 import FloatingContact from "@/components/landing/FloatingContact";
 
@@ -15,13 +15,25 @@ const sora = Sora({
   display: "swap",
 });
 
+const barlow = Barlow({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Apex Global Exports | Quality Used Vehicles & Heavy Machinery Sourcing",
-  description: "Certified B2B exporter of heavy construction machinery, passenger cars, utility tractors, engines, and parts. Dispatching from Japan and Taiwan ports to Africa, the Middle East, and Asia.",
-  keywords: "used cars export, buy used tractors, japan excavator export, taiwan machinery export, container ckd parts, JEVIC certified vehicles",
+  title: "Triple A International — Used Cars, Parts & Export",
+  description: "Quality used cars, tractors, machinery and parts exported worldwide from Taiwan. B2B vehicle export specialists with 17+ years of experience.",
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
-    title: "Apex Global Exports | Used Vehicles & Machinery Sourcing",
-    description: "Sourcing and shipping premium vehicles & industrial machinery from Japan/Taiwan. 100% inspected, JEVIC certified.",
+    title: "Triple A International",
+    description: "Global used vehicle & machinery export specialists.",
+    images: ['/og-image.jpg'],
     type: "website",
   },
 };
@@ -34,9 +46,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${sora.variable} h-full antialiased`}
+      className={`${inter.variable} ${sora.variable} ${barlow.variable} h-full antialiased overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col bg-[#0B1B2B]">
+      <body className="min-h-full flex flex-col bg-brand-black overflow-x-hidden w-full relative">
         {children}
         <FloatingContact />
       </body>

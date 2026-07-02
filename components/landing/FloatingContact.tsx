@@ -11,11 +11,6 @@ const CONTACT_CONFIG = {
   messengerUsername: "apex.global.exports",
   whatsappOffices: [
     {
-      country: "Japan Desk (Nagoya)",
-      phone: "81355550192", // Use country code without + or leading 0s
-      message: "Hi, I'm interested in your Japan inventory."
-    },
-    {
       country: "Taiwan Desk (Taipei)",
       phone: "886227770199",
       message: "Hi, I'm interested in your Taiwan inventory."
@@ -115,7 +110,7 @@ export default function FloatingContact() {
               aria-label="Message us on Facebook Messenger"
             >
               {/* Tooltip */}
-              <span className="hidden sm:inline-block absolute right-14 bg-[#1A2A3A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+              <span className="hidden sm:inline-block absolute right-14 bg-brand-carbon text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
                 Message us on Messenger
               </span>
               <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#006AFF] to-[#00B2FF] text-white flex items-center justify-center shadow-lg shadow-black/20 hover:scale-[1.05] hover:rotate-2 transition-all">
@@ -136,7 +131,7 @@ export default function FloatingContact() {
 
               {/* Desktop tooltip (hide if sub-menu open) */}
               {!showWhatsAppOptions && (
-                <span className="hidden sm:inline-block absolute right-14 bg-[#1A2A3A] text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+                <span className="hidden sm:inline-block absolute right-14 bg-brand-carbon text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-white/10 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
                   Chat on WhatsApp
                 </span>
               )}
@@ -148,11 +143,11 @@ export default function FloatingContact() {
                     initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.9, x: shouldReduceMotion ? 0 : -10 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.9, x: shouldReduceMotion ? 0 : -10 }}
-                    className="absolute right-14 bottom-0 bg-[#1A2A3A] border border-white/10 rounded-xl p-4 shadow-2xl w-60 text-left flex flex-col gap-2.5 z-55"
+                    className="absolute right-14 bottom-0 bg-brand-carbon border border-white/10 rounded-xl p-4 shadow-2xl w-60 text-left flex flex-col gap-2.5 z-55"
                   >
                     <div className="border-b border-white/10 pb-2">
                       <span className="text-[10px] uppercase font-bold tracking-wider text-white/50 flex items-center gap-1">
-                        <Globe className="w-3.5 h-3.5 text-[#E8732E]" /> Select Sourcing Office
+                        <Globe className="w-3.5 h-3.5 text-brand-red" /> Select Sourcing Office
                       </span>
                     </div>
 
@@ -162,14 +157,14 @@ export default function FloatingContact() {
                         href={`https://wa.me/${office.phone}?text=${encodeURIComponent(office.message)}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-between bg-[#0B1B2B] hover:bg-[#E8732E]/10 border border-white/5 hover:border-[#E8732E]/30 p-2.5 rounded-lg text-white transition-all text-xs font-semibold group/item"
+                        className="flex items-center justify-between bg-brand-black hover:bg-brand-red/10 border border-white/5 hover:border-brand-red/30 p-2.5 rounded-lg text-white transition-all text-xs font-semibold group/item"
                       >
                         <span>{office.country}</span>
-                        <ChevronRight className="w-4 h-4 text-white/40 group-hover/item:text-[#E8732E] group-hover/item:translate-x-0.5 transition-all" />
+                        <ChevronRight className="w-4 h-4 text-white/40 group-hover/item:text-brand-red group-hover/item:translate-x-0.5 transition-all" />
                       </a>
                     ))}
 
-                    <div className="flex items-center gap-1.5 text-[9px] text-[#3FA9A0] font-medium pt-1 border-t border-white/5">
+                    <div className="flex items-center gap-1.5 text-[9px] text-brand-silver font-medium pt-1 border-t border-white/5">
                       <ShieldCheck className="w-3.5 h-3.5" /> Certified B2B Trade
                     </div>
                   </motion.div>
@@ -183,13 +178,13 @@ export default function FloatingContact() {
       {/* Main Collapsed Button */}
       <button
         onClick={handleToggle}
-        className={`w-14 h-14 rounded-full bg-[#E8732E] text-white flex items-center justify-center shadow-xl shadow-black/25 relative focus-visible:ring-2 ring-offset-2 ring-[#E8732E] cursor-pointer hover:bg-[#d65f1c] hover:scale-[1.03] transition-all`}
+        className={`w-14 h-14 rounded-full bg-brand-red text-white flex items-center justify-center shadow-xl shadow-brand-red/25 relative focus-visible:ring-2 ring-offset-2 ring-brand-red cursor-pointer hover:bg-brand-red-dark hover:scale-[1.03] transition-all`}
         aria-label={isOpen ? "Close messaging options" : "Open messaging options"}
         aria-expanded={isOpen}
       >
         {/* Glow pulsing ring (only before first user interaction per session) */}
         {!hasInteracted && !isOpen && (
-          <span className="absolute inset-0 rounded-full border-2 border-[#E8732E] animate-ping opacity-60 pointer-events-none" />
+          <span className="absolute inset-0 rounded-full border-2 border-brand-red animate-ping opacity-60 pointer-events-none" />
         )}
 
         <AnimatePresence mode="wait">

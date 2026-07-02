@@ -16,20 +16,20 @@ const trustItems = [
 
 export default function TrustMarquee() {
   return (
-    <section className="relative bg-[#1A2A3A] py-6 border-y border-white/10 overflow-hidden select-none">
+    <section className="relative bg-brand-carbon py-6 border-y border-white/10 overflow-hidden select-none">
       {/* Background tint overlay */}
-      <div className="absolute inset-0 bg-[#0B1B2B]/20 pointer-events-none" />
+      <div className="absolute inset-0 bg-brand-black/20 pointer-events-none" />
       
       {/* Fade edge gradients */}
-      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#1A2A3A] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#1A2A3A] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-brand-carbon to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-brand-carbon to-transparent z-10 pointer-events-none" />
 
       {/* Marquee Ticker */}
       <div className="flex w-max relative">
         <div className="flex animate-[marquee_30s_linear_infinite] gap-16 whitespace-nowrap pr-16 items-center">
           {trustItems.map((item, idx) => (
             <div key={idx} className="flex items-center gap-2.5 text-white/60 font-semibold text-xs md:text-sm uppercase tracking-wider">
-              <item.icon className="w-4 h-4 text-[#E8732E]" />
+              <item.icon className="w-4 h-4 text-brand-red" />
               <span>{item.text}</span>
             </div>
           ))}
@@ -39,7 +39,7 @@ export default function TrustMarquee() {
         <div className="flex animate-[marquee_30s_linear_infinite] gap-16 whitespace-nowrap pr-16 items-center" aria-hidden="true">
           {trustItems.map((item, idx) => (
             <div key={`dup-${idx}`} className="flex items-center gap-2.5 text-white/60 font-semibold text-xs md:text-sm uppercase tracking-wider">
-              <item.icon className="w-4 h-4 text-[#E8732E]" />
+              <item.icon className="w-4 h-4 text-brand-red" />
               <span>{item.text}</span>
             </div>
           ))}

@@ -74,17 +74,17 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-[#F6F7F5] text-[#101417]">
+    <section className="py-24 md:py-32 bg-brand-off-white text-brand-black">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-16">
           <Reveal y={20}>
-            <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Client Endorsements</span>
-            <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-[#0B1B2B] mb-5">
+            <span className="text-xs font-semibold text-brand-red uppercase tracking-widest block mb-3">Client Endorsements</span>
+            <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-brand-black mb-5">
               Verified Reviews From B2B Importers
             </h2>
-            <p className="text-[#5C6670] text-base">
+            <p className="text-brand-muted text-base">
               See how machinery dealerships, construction firms, and commercial vehicle importers rate our direct sourcing and port dispatch efficiency.
             </p>
           </Reveal>
@@ -104,15 +104,15 @@ export default function Testimonials() {
               <div className="flex flex-col md:flex-row gap-8 items-start relative z-10">
                 {/* Author Info Column */}
                 <div className="md:w-1/3 flex flex-col items-start text-left">
-                  <div className="w-12 h-12 rounded-xl bg-[#0B1B2B] text-white flex items-center justify-center mb-4">
-                    <UserCheck className="w-6 h-6 text-[#E8732E]" />
+                  <div className="w-12 h-12 rounded-xl bg-brand-black text-white flex items-center justify-center mb-4">
+                    <UserCheck className="w-6 h-6 text-brand-red" />
                   </div>
-                  <h4 className="font-display font-black text-base text-[#0B1B2B] leading-tight">
+                  <h4 className="font-display font-black text-base text-brand-black leading-tight">
                     {testimonials[activeIdx].author}
                   </h4>
-                  <p className="text-xs text-[#5C6670] mt-0.5">{testimonials[activeIdx].role}</p>
-                  <p className="text-xs font-bold text-[#E8732E] mt-2">{testimonials[activeIdx].company}</p>
-                  <p className="text-[10px] text-[#5C6670] font-mono mt-1 uppercase tracking-wider">
+                  <p className="text-xs text-brand-muted mt-0.5">{testimonials[activeIdx].role}</p>
+                  <p className="text-xs font-bold text-brand-red mt-2">{testimonials[activeIdx].company}</p>
+                  <p className="text-[10px] text-brand-muted font-mono mt-1 uppercase tracking-wider">
                     {testimonials[activeIdx].location}
                   </p>
                 </div>
@@ -122,11 +122,11 @@ export default function Testimonials() {
                   {/* Stars */}
                   <div className="flex gap-1 mb-4">
                     {Array.from({ length: testimonials[activeIdx].rating }).map((_, idx) => (
-                      <Star key={idx} className="w-4 h-4 fill-[#E8732E] text-[#E8732E]" />
+                      <Star key={idx} className="w-4 h-4 fill-brand-red text-brand-red" />
                     ))}
                   </div>
 
-                  <blockquote className="text-base md:text-lg text-[#0B1B2B] font-medium leading-relaxed mb-6 italic">
+                  <blockquote className="text-base md:text-lg text-brand-black font-medium leading-relaxed mb-6 italic">
                     "{testimonials[activeIdx].quote}"
                   </blockquote>
 
@@ -138,7 +138,7 @@ export default function Testimonials() {
                           key={idx}
                           onClick={() => setActiveIdx(idx)}
                           className={`w-2.5 h-2.5 rounded-full transition-all ${
-                            activeIdx === idx ? "bg-[#E8732E] w-6" : "bg-black/10 hover:bg-black/20"
+                            activeIdx === idx ? "bg-brand-red w-6" : "bg-black/10 hover:bg-black/20"
                           }`}
                           aria-label={`Go to slide ${idx + 1}`}
                         />
@@ -148,14 +148,14 @@ export default function Testimonials() {
                     <div className="flex gap-2">
                       <button
                         onClick={handlePrev}
-                        className="p-2 rounded-lg bg-black/5 hover:bg-black/10 text-[#0B1B2B] transition-colors"
+                        className="p-2 rounded-lg bg-black/5 hover:bg-black/10 text-brand-black transition-colors"
                         aria-label="Previous testimonial"
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
                       <button
                         onClick={handleNext}
-                        className="p-2 rounded-lg bg-black/5 hover:bg-black/10 text-[#0B1B2B] transition-colors"
+                        className="p-2 rounded-lg bg-black/5 hover:bg-black/10 text-brand-black transition-colors"
                         aria-label="Next testimonial"
                       >
                         <ChevronRight className="w-4 h-4" />

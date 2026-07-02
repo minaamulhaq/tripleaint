@@ -44,7 +44,7 @@ export default function CustomSelect({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-[#0B1B2B] hover:bg-[#0B1B2B]/80 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all cursor-pointer text-left"
+        className="w-full flex items-center justify-between bg-brand-black hover:bg-brand-black/80 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all cursor-pointer text-left"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
@@ -53,7 +53,7 @@ export default function CustomSelect({
         </span>
         <ChevronDown
           className={`w-4 h-4 text-white/50 transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-[#E8732E]" : ""
+            isOpen ? "rotate-180 text-brand-red" : ""
           }`}
         />
       </button>
@@ -66,7 +66,7 @@ export default function CustomSelect({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-30 w-full mt-2 bg-[#1A2A3A] border border-white/10 rounded-lg shadow-2xl overflow-hidden max-h-60 overflow-y-auto scrollbar-none"
+            className="absolute z-30 w-full mt-2 bg-brand-carbon border border-white/10 rounded-lg shadow-2xl overflow-hidden max-h-60 overflow-y-auto scrollbar-none"
             role="listbox"
           >
             {options.map((opt) => (
@@ -78,8 +78,8 @@ export default function CustomSelect({
                 }}
                 className={`flex items-center justify-between px-4 py-3 text-sm cursor-pointer transition-colors ${
                   opt.value === value
-                    ? "bg-[#E8732E] text-white font-semibold"
-                    : "text-white/80 hover:bg-[#0B1B2B] hover:text-white"
+                    ? "bg-brand-red text-white font-semibold"
+                    : "text-white/80 hover:bg-brand-black hover:text-white"
                 }`}
                 role="option"
                 aria-selected={opt.value === value}

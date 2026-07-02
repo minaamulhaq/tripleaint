@@ -1,10 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: var(--font-sora), sans-serif;
+  --font-display: var(--font-barlow), var(--font-sora), sans-serif;
   --font-sans: var(--font-inter), sans-serif;
   
   --animate-spin-slow: spin 15s linear infinite;
+
+  --color-brand-black: #1C1C1E;
+  --color-brand-carbon: #2A2A2A;
+  --color-brand-red: #C8102E;
+  --color-brand-red-dark: #A00C23;
+  --color-brand-red-light: #E8193A;
+  --color-brand-silver: #C0C4CC;
+  --color-brand-chrome: #9EA5B0;
+  --color-brand-silver-light: #E8EAED;
+  --color-brand-white: #FFFFFF;
+  --color-brand-off-white: #F7F7F8;
+  --color-brand-muted: #6B7280;
+}
+
+.brand-heading {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  font-style: italic;
 }
 
 :root {

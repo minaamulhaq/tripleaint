@@ -1,25 +1,32 @@
 import Link from "next/link";
-import { Globe, Mail, Phone, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0B1B2B] text-white pt-16 pb-8 border-t border-white/5 relative">
+    <footer className="bg-brand-black text-white pt-16 pb-8 border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           
           {/* Logo & Info */}
           <div className="flex flex-col items-start">
-            <Link href="#" className="flex items-center gap-2 text-white mb-4">
-              <Globe className="w-8 h-8 text-[#E8732E]" />
-              <div className="flex flex-col">
-                <span className="font-display font-bold text-lg tracking-tight leading-none">APEX</span>
-                <span className="text-[9px] text-white/55 tracking-widest font-mono">GLOBAL EXPORTS</span>
-              </div>
+            <Link href="/" className="inline-block bg-transparent rounded-xl py-1.5 mb-2">
+              <Image 
+                src="/logo/triple-a-logo.png" 
+                alt="Triple A International" 
+                width={200} 
+                height={50} 
+                className="h-10 lg:h-14 w-auto rounded-lg" 
+                unoptimized
+              />
             </Link>
-            <p className="text-white/60 text-xs leading-relaxed max-w-sm mb-6">
-              Certified B2B exporter of heavy construction machinery, agricultural tractors, engines, and passenger vehicles from Japan and Taiwan to buyers worldwide.
+            <p className="font-display italic text-brand-silver text-sm font-semibold mb-4">
+              Used Cars • Parts • Export
             </p>
-            <div className="flex items-center gap-1.5 text-[11px] text-[#3FA9A0] font-medium bg-[#3FA9A0]/10 px-3 py-1 rounded-full border border-[#3FA9A0]/20">
+            <p className="text-white/60 text-xs leading-relaxed max-w-sm mb-6">
+              Certified B2B exporter of heavy construction machinery, agricultural tractors, engines, and passenger vehicles from Taiwan to buyers worldwide.
+            </p>
+            <div className="flex items-center gap-1.5 text-[11px] text-brand-silver font-medium bg-brand-silver/10 px-3 py-1 rounded-full border border-brand-silver/20">
               <ShieldCheck className="w-3.5 h-3.5" /> JUMVEA Member License No. 49302
             </div>
           </div>
@@ -30,12 +37,12 @@ export default function Footer() {
               Corporate Directory
             </h4>
             <div className="flex flex-col gap-2.5 text-xs text-white/70">
-              <a href="#about" className="hover:text-[#E8732E] transition-colors">Why Sourced From Us</a>
-              <a href="#inventory" className="hover:text-[#E8732E] transition-colors">Featured Yard Stock</a>
-              <a href="#how-to-buy" className="hover:text-[#E8732E] transition-colors">Port Import Stepper</a>
-              <a href="#services" className="hover:text-[#E8732E] transition-colors">Container Dismantling & CKD</a>
-              <a href="#destinations" className="hover:text-[#E8732E] transition-colors">Global Export Ports</a>
-              <a href="#gallery" className="hover:text-[#E8732E] transition-colors">Yard Dispatch Gallery</a>
+              <a href="#about" className="hover:text-brand-red transition-colors">Why Sourced From Us</a>
+              <a href="#inventory" className="hover:text-brand-red transition-colors">Featured Yard Stock</a>
+              <a href="#how-to-buy" className="hover:text-brand-red transition-colors">Port Import Stepper</a>
+              <a href="#services" className="hover:text-brand-red transition-colors">Container Dismantling & CKD</a>
+              <a href="#destinations" className="hover:text-brand-red transition-colors">Global Export Ports</a>
+              <a href="#gallery" className="hover:text-brand-red transition-colors">Yard Dispatch Gallery</a>
             </div>
           </div>
 
@@ -45,10 +52,6 @@ export default function Footer() {
               Corporate Yards
             </h4>
             <div className="flex flex-col gap-4 text-xs text-white/70">
-              <div>
-                <p className="font-semibold text-white">Nagoya Yard Hub (Japan)</p>
-                <p className="text-[11px] text-white/50 mt-0.5">Minato Ward, Nagoya, Aichi Prefecture</p>
-              </div>
               <div>
                 <p className="font-semibold text-white">Keelung Port Yard (Taiwan)</p>
                 <p className="text-[11px] text-white/50 mt-0.5">Zhongzheng District, Keelung Port Area</p>
@@ -63,16 +66,12 @@ export default function Footer() {
             </h4>
             <div className="flex flex-col gap-3 text-xs text-white/70">
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#E8732E] flex-shrink-0" />
-                <span>+81 3 5555 0192 (JP Line)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#3FA9A0] flex-shrink-0" />
+                <Phone className="w-4 h-4 text-brand-silver flex-shrink-0" />
                 <span>+886 2 2777 0199 (TW Line)</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#E8732E] flex-shrink-0" />
-                <span>sales@apex-export.com</span>
+                <Mail className="w-4 h-4 text-brand-silver flex-shrink-0" />
+                <span>sales@tripleainternational.com</span>
               </div>
             </div>
           </div>
@@ -82,7 +81,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/5 pt-8 mt-12 flex flex-col md:flex-row justify-between items-center text-[10px] text-white/40">
           <div className="flex flex-wrap gap-4 mb-4 md:mb-0">
-            <span>© {new Date().getFullYear()} Apex Global Exports. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Triple A International. All rights reserved.</span>
             <Link href="#" className="hover:text-white transition-colors">Terms of Trade</Link>
             <Link href="#" className="hover:text-white transition-colors">CIF Agreement Terms</Link>
             <Link href="#" className="hover:text-white transition-colors">Privacy Charter</Link>

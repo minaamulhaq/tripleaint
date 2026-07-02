@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { ArrowRight, Search, Globe, ShieldCheck, MapPin } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
@@ -43,10 +44,9 @@ export default function Hero() {
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (vehicleType || destination) {
-      window.location.hash = "#inventory";
-      // Emit event or update filter if needed
-      const event = new CustomEvent("quick-search", { detail: { vehicleType, destination } });
-      window.dispatchEvent(event);
+      window.location.href = `/inventory?category=${vehicleType}`;
+    } else {
+      window.location.href = "/inventory";
     }
   };
 
@@ -65,15 +65,34 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex items-center justify-center bg-[#0B1B2B] text-white pt-28 pb-20 overflow-hidden">
+    <section className="relative min-h-[95vh] flex items-center justify-center bg-brand-black text-white pt-28 pb-20 overflow-hidden">
       {/* Background visual treatments */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#0B1B2B]/70 to-[#0B1B2B]" />
+        <div className="absolute inset-0 bg-radial-gradient from-brand-carbon via-brand-black/70 to-brand-black" />
+
+        {/* AAA motif watermark */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none">
+          <span className="font-display font-black text-[40rem] leading-none tracking-tighter">AAA</span>
+        </div>
+
+        {/* Chrome silver shimmer line */}
+        <div className="absolute top-1/3 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-silver to-transparent opacity-30" />
+
+        {/* Car silhouette */}
+        <div className="absolute top-[20%] right-[-10%] w-[60%] opacity-10 select-none pointer-events-none">
+          <svg viewBox="0 0 100 40" fill="none" stroke="currentColor" className="w-full h-auto text-brand-silver">
+            <path d="M10 30 Q 20 15 40 15 Q 60 15 70 25 Q 80 25 90 30" strokeWidth="1" />
+            <path d="M40 15 Q 50 5 70 10 Q 80 15 85 25" strokeWidth="1" />
+            <circle cx="30" cy="30" r="5" strokeWidth="1" />
+            <circle cx="75" cy="30" r="5" strokeWidth="1" />
+          </svg>
+        </div>
+
         {/* Subtle mesh background grid */}
         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]" />
         {/* Subtle glowing orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#E8732E]/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#3FA9A0]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-red-light/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-silver/10 rounded-full blur-[120px] pointer-events-none" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -86,17 +105,17 @@ export default function Hero() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 bg-[#E8732E]/10 border border-[#E8732E]/30 text-[#E8732E] px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-6"
+            className="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/30 text-brand-red px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-6"
           >
             <Globe className="w-3.5 h-3.5 animate-spin-slow" /> Global Export Services Since 2009
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
-            className="font-display font-black text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.08] mb-6 text-white"
+            className="brand-heading text-4xl md:text-5xl lg:text-6xl tracking-tight leading-[1.08] mb-6 text-white"
           >
             Heavy Machinery & Vehicles. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E8732E] to-[#f3955d]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-brand-red-light">
               Exported Worldwide.
             </span>
           </motion.h1>
@@ -105,19 +124,19 @@ export default function Hero() {
             variants={itemVariants}
             className="text-white/70 text-lg md:text-xl font-normal leading-relaxed max-w-xl mb-8"
           >
-            Direct sourcing and certified export of used cars, commercial trucks, tractors, construction machinery, and parts from Japan and Taiwan. Secured logistics, verified inspections, and customs clearance.
+            Direct sourcing and certified export of used cars, commercial trucks, tractors, construction machinery, and parts from Taiwan. Secured logistics, verified inspections, and customs clearance.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-10 w-full sm:w-auto">
-            <a
-              href="#inventory"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-[#E8732E] hover:bg-[#d65f1c] text-white font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:scale-[1.03] shadow-lg shadow-[#E8732E]/25"
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto">
+            <Link
+              href="/inventory"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-br from-brand-red to-brand-red-dark text-white font-bold px-7 py-4 rounded-lg transition-all duration-200 hover:scale-[1.03] shadow-lg shadow-brand-red/25"
             >
               Browse Inventory <ArrowRight className="w-5 h-5" />
-            </a>
+            </Link>
             <a
               href="#contact"
-              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold px-7 py-4 rounded-lg transition-all"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold px-7 py-4 rounded-lg transition-all"
             >
               Talk to Our Team
             </a>
@@ -135,7 +154,7 @@ export default function Hero() {
               <p className="text-xs text-white/50 uppercase tracking-wider mt-1">Years Experience</p>
             </div>
             <div>
-              <p className="font-display font-black text-3xl text-[#3FA9A0]">
+              <p className="font-display font-black text-3xl text-brand-silver">
                 <CountUp end={30} suffix="+" />
               </p>
               <p className="text-xs text-white/50 uppercase tracking-wider mt-1">Countries Served</p>
@@ -147,7 +166,7 @@ export default function Hero() {
               <p className="text-xs text-white/50 uppercase tracking-wider mt-1">Units Shipped</p>
             </div>
             <div>
-              <p className="font-display font-black text-3xl text-[#E8732E]">
+              <p className="font-display font-black text-3xl text-brand-red">
                 <CountUp end={100} suffix="%" />
               </p>
               <p className="text-xs text-white/50 uppercase tracking-wider mt-1">Inspected Units</p>
@@ -160,10 +179,10 @@ export default function Hero() {
           initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95, y: shouldReduceMotion ? 0 : 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 80, damping: 15, delay: 0.4 }}
-          className="lg:col-span-5 bg-[#1A2A3A]/90 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/10 shadow-2xl shadow-black/45"
+          className="lg:col-span-5 bg-brand-carbon/90 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/10 shadow-2xl shadow-black/45"
         >
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-[#E8732E]/10 rounded-lg text-[#E8732E]">
+            <div className="p-2 bg-brand-red/10 rounded-lg text-brand-red">
               <Search className="w-5 h-5" />
             </div>
             <div>
@@ -181,7 +200,7 @@ export default function Hero() {
                 id="hero-vehicle-type"
                 value={vehicleType}
                 onChange={(e) => setVehicleType(e.target.value)}
-                className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all appearance-none"
+                className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all appearance-none"
               >
                 <option value="">Select Category...</option>
                 <option value="cars">Used Passenger Cars (LHD / RHD)</option>
@@ -199,7 +218,7 @@ export default function Hero() {
                 id="hero-destination"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                className="w-full bg-[#0B1B2B] border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#E8732E] focus:ring-1 focus:ring-[#E8732E] transition-all appearance-none"
+                className="w-full bg-brand-black border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all appearance-none"
               >
                 <option value="">Select Destination...</option>
                 <option value="africa">Africa (East, West, South)</option>
@@ -212,7 +231,7 @@ export default function Hero() {
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full bg-[#E8732E] hover:bg-[#d65f1c] text-white font-bold py-3.5 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-[#E8732E]/10"
+                className="w-full bg-gradient-to-br from-brand-red to-brand-red-dark text-white font-bold py-3.5 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-brand-red/10"
               >
                 <Search className="w-4 h-4" /> Search Available Stock
               </button>
@@ -221,10 +240,10 @@ export default function Hero() {
 
           <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between text-xs text-white/60">
             <span className="flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#3FA9A0]" /> Inspection Cleared
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-silver" /> Inspection Cleared
             </span>
             <span className="flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-[#E8732E]" /> Global Port Delivery
+              <MapPin className="w-3.5 h-3.5 text-brand-red" /> Global Port Delivery
             </span>
           </div>
         </motion.div>

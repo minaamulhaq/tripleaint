@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Reveal from "./Reveal";
-import { ArrowRight, Compass, Settings, AlertCircle, PhoneCall, Heart } from "lucide-react";
+import { ArrowRight, Settings, AlertCircle, PhoneCall, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ImageSlider from "./ImageSlider";
 
 interface InventoryItem {
   id: string;
@@ -14,6 +15,7 @@ interface InventoryItem {
   specs: string;
   price: string;
   badge: string;
+  images: string[];
   badgeType: "accent" | "teal" | "dark";
   stats: { label: string; val: string }[];
 }
@@ -27,7 +29,8 @@ const initialItems: InventoryItem[] = [
     year: 2021,
     specs: "2.7L Petrol / Automatic / 4WD",
     price: "$34,500 FOB",
-    badge: "Japan Stock",
+    badge: "Taiwan Stock",
+    images: ["/car/c1.jpg", "/car/c2.jpg", "/car/c3.jpg"],
     badgeType: "teal",
     stats: [
       { label: "Engine", val: "2700cc" },
@@ -44,6 +47,7 @@ const initialItems: InventoryItem[] = [
     specs: "50HP / Direct Injection / 4WD",
     price: "Ask for Price",
     badge: "Taiwan Yard",
+    images: ["/car/c2.jpg", "/car/c4.jpg"],
     badgeType: "accent",
     stats: [
       { label: "Power", val: "50 HP" },
@@ -60,6 +64,7 @@ const initialItems: InventoryItem[] = [
     specs: "Crawler / 1.0m³ Bucket / Heavy Duty",
     price: "$68,000 FOB",
     badge: "Direct Sourced",
+    images: ["/car/c3.jpg", "/car/c1.jpg"],
     badgeType: "dark",
     stats: [
       { label: "Capacity", val: "20 Tons" },
@@ -76,6 +81,7 @@ const initialItems: InventoryItem[] = [
     specs: "7.5T Payload / Manual / Diesel LHD",
     price: "Ask for Price",
     badge: "Taiwan Stock",
+    images: ["/car/c4.jpg", "/car/c2.jpg", "/car/c1.jpg"],
     badgeType: "teal",
     stats: [
       { label: "Engine", val: "7,540cc" },
@@ -91,7 +97,8 @@ const initialItems: InventoryItem[] = [
     year: 2020,
     specs: "49HP Diesel / Manual Sync Shuttle",
     price: "$14,800 FOB",
-    badge: "Japan Yard",
+    badge: "Taiwan Yard",
+    images: ["/car/c1.jpg", "/car/c3.jpg"],
     badgeType: "dark",
     stats: [
       { label: "Power", val: "49 HP" },
@@ -108,6 +115,7 @@ const initialItems: InventoryItem[] = [
     specs: "4-Cylinder Liquid Cooled Engine",
     price: "Ask for Price",
     badge: "In Stock",
+    images: ["/car/c2.jpg"],
     badgeType: "accent",
     stats: [
       { label: "Type", val: "Diesel" },
@@ -118,43 +126,17 @@ const initialItems: InventoryItem[] = [
 ];
 
 export default function FeaturedInventory() {
-  const [activeTab, setActiveTab] = useState<string>("all");
-  const [filteredItems, setFilteredItems] = useState<InventoryItem[]>(initialItems);
-
-  useEffect(() => {
-    // Listen for custom search events from Hero Quick Search
-    const handleQuickSearch = (e: Event) => {
-      const { vehicleType } = (e as CustomEvent).detail;
-      if (vehicleType) {
-        if (vehicleType === "cars") {
-          setActiveTab("cars-rhd"); // Default to RHD for search match
-        } else {
-          setActiveTab(vehicleType);
-        }
-      }
-    };
-
-    window.addEventListener("quick-search", handleQuickSearch);
-    return () => window.removeEventListener("quick-search", handleQuickSearch);
-  }, []);
-
-  useEffect(() => {
-    if (activeTab === "all") {
-      setFilteredItems(initialItems);
-    } else {
-      setFilteredItems(initialItems.filter((item) => item.category === activeTab));
-    }
-  }, [activeTab]);
+  const featuredItems = initialItems.slice(0, 6); // Just show the top items as featured
 
   return (
-    <section id="inventory" className="py-24 md:py-32 bg-[#0B1B2B] text-white">
+    <section id="inventory" className="py-24 md:py-32 bg-brand-black text-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div className="max-w-xl">
             <Reveal y={20}>
-              <span className="text-xs font-semibold text-[#E8732E] uppercase tracking-widest block mb-3">Live Yard Stock</span>
+              <span className="text-xs font-semibold text-brand-red uppercase tracking-widest block mb-3">Live Yard Stock</span>
               <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-white mb-4">
                 Featured Ready-to-Ship Machinery & Vehicles
               </h2>
@@ -163,40 +145,6 @@ export default function FeaturedInventory() {
               </p>
             </Reveal>
           </div>
-          <div className="mt-6 md:mt-0">
-            <Reveal y={10} delay={0.2}>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#E8732E] hover:text-white transition-colors border-b border-[#E8732E] pb-1 uppercase tracking-wider"
-              >
-                Inquire About Custom Sourcing <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Tab Filters */}
-        <div className="flex flex-wrap gap-2.5 mb-10 pb-4 border-b border-white/10 overflow-x-auto scrollbar-none">
-          {[
-            { id: "all", label: "Show All" },
-            { id: "cars-lhd", label: "Cars (LHD)" },
-            { id: "cars-rhd", label: "Cars (RHD)" },
-            { id: "tractors", label: "Tractors" },
-            { id: "machinery", label: "Machinery" },
-            { id: "parts", label: "Engines & Parts" },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-bold tracking-wide uppercase border transition-all cursor-pointer whitespace-nowrap ${
-                activeTab === tab.id
-                  ? "bg-[#E8732E] border-[#E8732E] text-white shadow-lg shadow-[#E8732E]/20"
-                  : "bg-[#1A2A3A] border-white/5 hover:border-white/20 text-white/70 hover:text-white"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
         </div>
 
         {/* Grid Container */}
@@ -205,7 +153,7 @@ export default function FeaturedInventory() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item) => (
+            {featuredItems.map((item) => (
               <motion.div
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -213,17 +161,20 @@ export default function FeaturedInventory() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
                 key={item.id}
-                className="bg-[#1A2A3A] rounded-2xl border border-white/5 overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300 shadow-xl shadow-black/10"
+                className="bg-brand-carbon rounded-2xl border border-white/5 overflow-hidden flex flex-col group hover:-translate-y-1.5 transition-all duration-300 shadow-xl shadow-black/10"
               >
                 {/* Visual Representation Block (Styled Card Top) */}
-                <div className="relative aspect-[16/10] bg-[#0B1B2B] p-6 flex flex-col justify-between overflow-hidden">
+                <div className="relative aspect-[16/10] bg-brand-black p-6 flex flex-col justify-between overflow-hidden">
                   {/* Background graphic */}
-                  <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#0B1B2B]/60 to-[#0B1B2B] z-10" />
-                  <div className="absolute inset-0 bg-[#E8732E]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                  {/* Image Display Carousel */}
+                  <ImageSlider images={item.images} title={item.title} />
                   
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-transparent z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-brand-red/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
+
                   {/* Category Pill Tag */}
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="bg-[#0B1B2B]/90 backdrop-blur-sm border border-white/10 text-white/70 font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full">
+                    <span className="bg-brand-black/90 backdrop-blur-sm border border-white/10 text-white/70 font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full">
                       {item.categoryLabel}
                     </span>
                   </div>
@@ -233,19 +184,14 @@ export default function FeaturedInventory() {
                     <span
                       className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow ${
                         item.badgeType === "accent"
-                          ? "bg-[#E8732E] text-white"
+                          ? "bg-brand-red text-white"
                           : item.badgeType === "teal"
-                          ? "bg-[#3FA9A0] text-white"
+                          ? "bg-brand-silver text-white"
                           : "bg-white/10 text-white border border-white/10"
                       }`}
                     >
                       {item.badge}
                     </span>
-                  </div>
-
-                  {/* Graphic Display Icon in the center representing machinery */}
-                  <div className="flex-1 flex items-center justify-center relative z-10 py-6">
-                    <Compass className="w-16 h-16 text-white/5 group-hover:text-[#E8732E]/20 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500" />
                   </div>
 
                   {/* Specs & Year */}
@@ -257,7 +203,7 @@ export default function FeaturedInventory() {
 
                 {/* Info Block */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="font-display font-black text-lg text-white group-hover:text-[#E8732E] transition-colors line-clamp-1 mb-4">
+                  <h3 className="font-display font-black text-lg text-white group-hover:text-brand-red transition-colors line-clamp-1 mb-4">
                     {item.title}
                   </h3>
 
@@ -280,7 +226,7 @@ export default function FeaturedInventory() {
 
                     <a
                       href="#contact"
-                      className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-[#E8732E] hover:text-white border border-white/10 hover:border-transparent text-white/90 text-xs font-bold px-4 py-2.5 rounded-lg transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 bg-white/5 hover:bg-brand-red hover:text-white border border-white/10 hover:border-transparent text-white/90 text-xs font-bold px-4 py-2.5 rounded-lg transition-all duration-200"
                     >
                       <PhoneCall className="w-3.5 h-3.5" /> Quote Inquiry
                     </a>
@@ -295,10 +241,10 @@ export default function FeaturedInventory() {
         <div className="mt-16 text-center">
           <Reveal y={15} delay={0.1}>
             <a
-              href="#contact"
-              className="inline-flex items-center gap-3 bg-[#1A2A3A] hover:bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-xl transition-all"
+              href="/inventory"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-brand-red hover:text-white transition-colors border-b border-brand-red pb-1 uppercase tracking-wider"
             >
-              Request Sourcing Quote for Custom Models <ArrowRight className="w-5 h-5 text-[#E8732E]" />
+              View All <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </Reveal>
         </div>
