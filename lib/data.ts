@@ -42,7 +42,7 @@ export const initialItems: InventoryItem[] = [
     price: "$95,000 FOB",
     badge: "Taiwan Yard",
     dateAdded: "2024-06-20",
-    images: ["/car/c2.jpg", "/car/c4.jpg"],
+    images: ["/car/e1.jpg", "/car/c2.jpg", "/car/c4.jpg"],
     badgeType: "accent",
     stats: [
       { label: "Weight", val: "22.5 Tons" },
@@ -96,7 +96,7 @@ export const initialItems: InventoryItem[] = [
     price: "Ask for Price",
     badge: "Taiwan Yard",
     dateAdded: "2024-07-01",
-    images: ["/car/c1.jpg", "/car/c3.jpg"],
+    images: ["/car/e2.jpg", "/car/c1.jpg", "/car/c3.jpg"],
     badgeType: "dark",
     stats: [
       { label: "Power", val: "191 HP" },
@@ -114,7 +114,7 @@ export const initialItems: InventoryItem[] = [
     price: "Ask for Price",
     badge: "In Stock",
     dateAdded: "2024-07-02",
-    images: ["/car/c2.jpg"],
+    images: ["/car/e3.jpg", "/car/c2.jpg"],
     badgeType: "accent",
     stats: [
       { label: "Type", val: "Diesel" },
@@ -150,7 +150,7 @@ export const initialItems: InventoryItem[] = [
     price: "$54,500 FOB",
     badge: "Taiwan Yard",
     dateAdded: "2024-06-10",
-    images: ["/car/c4.jpg", "/car/c2.jpg", "/car/c1.jpg"],
+    images: ["/car/e1.jpg", "/car/e2.jpg", "/car/e3.jpg"],
     badgeType: "dark",
     stats: [
       { label: "Power", val: "164 HP" },
