@@ -39,7 +39,7 @@ export default function ImageSlider({ images, title }: ImageSliderProps) {
         <>
           <button
             onClick={prev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-30 group-hover:opacity-100 transition-opacity hover:bg-brand-red z-30 pointer-events-auto"
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-100 lg:opacity-30 group-hover:opacity-100 transition-opacity hover:bg-brand-gold z-30 pointer-events-auto shadow-md"
             aria-label="Previous image"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -47,7 +47,7 @@ export default function ImageSlider({ images, title }: ImageSliderProps) {
           
           <button
             onClick={next}
-            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-30 group-hover:opacity-100 transition-opacity hover:bg-brand-red z-30 pointer-events-auto"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center opacity-100 lg:opacity-30 group-hover:opacity-100 transition-opacity hover:bg-brand-gold z-30 pointer-events-auto shadow-md"
             aria-label="Next image"
           >
             <ChevronRight className="w-6 h-6" />
@@ -59,7 +59,7 @@ export default function ImageSlider({ images, title }: ImageSliderProps) {
               <div
                 key={idx}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentIndex ? "w-4 bg-brand-red" : "w-1.5 bg-white/50"
+                  idx === currentIndex ? "w-4 bg-brand-gold" : "w-1.5 bg-white/50"
                 }`}
               />
             ))}
