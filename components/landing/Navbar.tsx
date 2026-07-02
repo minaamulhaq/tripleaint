@@ -73,11 +73,14 @@ export default function Navbar() {
                 alt="Triple A International"
                 width={240}
                 height={60}
-                className="h-9 lg:h-12 w-auto rounded-lg"
+                className="h-7 lg:h-9 w-auto rounded-lg"
                 style={{ filter: "brightness(0) invert(1)" }} // Simple white logo for dark theme
                 unoptimized
                 priority
               />
+              <p className="text-white/80 text-xs mt-0">
+                TripleA International
+              </p>
             </div>
           </Link>
 
@@ -89,9 +92,8 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`relative text-sm font-semibold transition-colors py-2 ${
-                    isActive ? "text-brand-gold" : "text-brand-silver hover:text-white"
-                  }`}
+                  className={`relative text-sm font-semibold transition-colors py-2 ${isActive ? "text-brand-gold" : "text-brand-silver hover:text-white"
+                    }`}
                 >
                   {link.label}
                   {isActive && (
@@ -157,6 +159,9 @@ export default function Navbar() {
                     style={{ filter: "brightness(0) invert(1)" }}
                     unoptimized
                   />
+                  <p className="text-white/80 text-xs mt-0">
+                    TripleA International
+                  </p>
                 </Link>
                 <button
                   onClick={() => setIsOpen(false)}
@@ -179,9 +184,8 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`text-lg font-semibold py-3 flex items-center justify-between border-b border-brand-divider ${
-                          isActive ? "text-brand-gold" : "text-brand-silver hover:text-white"
-                        }`}
+                        className={`text-lg font-semibold py-3 flex items-center justify-between border-b border-brand-divider ${isActive ? "text-brand-gold" : "text-brand-silver hover:text-white"
+                          }`}
                       >
                         {link.label}
                         <ArrowRight className={`w-4 h-4 ${isActive ? "text-brand-gold" : "opacity-0 group-hover:opacity-100 text-brand-silver"}`} />
