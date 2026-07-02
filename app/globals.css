@@ -6,17 +6,18 @@
   
   --animate-spin-slow: spin 15s linear infinite;
 
-  --color-brand-black: #1C1C1E;
-  --color-brand-carbon: #2A2A2A;
-  --color-brand-red: #C8102E;
-  --color-brand-red-dark: #A00C23;
-  --color-brand-red-light: #E8193A;
-  --color-brand-silver: #C0C4CC;
-  --color-brand-chrome: #9EA5B0;
-  --color-brand-silver-light: #E8EAED;
+  --color-brand-dark: #0A0D14;
+  --color-brand-darker: #05070B;
+  --color-brand-card: #13161F;
+  --color-brand-gold: #F1B03B;
+  --color-brand-gold-light: #F7C86A;
+  --color-brand-border: #1F2432;
+  --color-brand-divider: #1F2432;
+  --color-brand-silver: #9CA3AF;
   --color-brand-white: #FFFFFF;
-  --color-brand-off-white: #F7F7F8;
   --color-brand-muted: #6B7280;
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
 }
 
 .brand-heading {
@@ -26,8 +27,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #101417;
+  --background: #0A0D14;
+  --foreground: #FFFFFF;
 }
 
 /* Custom background animations/utilities */

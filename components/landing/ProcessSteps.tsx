@@ -34,17 +34,17 @@ const steps = [
 
 export default function ProcessSteps() {
   return (
-    <section id="how-to-buy" className="py-24 md:py-32 bg-brand-off-white text-brand-black">
+    <section id="how-to-buy" className="py-24 md:py-32 bg-brand-dark text-white">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-20">
           <Reveal y={20}>
-            <span className="text-xs font-semibold text-brand-red uppercase tracking-widest block mb-3">Clear Purchasing Protocol</span>
-            <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-brand-black mb-5">
+            <span className="text-xs font-bold text-brand-gold uppercase tracking-widest block mb-3">Clear Purchasing Protocol</span>
+            <h2 className="font-display font-black text-3xl md:text-4xl tracking-tight leading-tight text-white mb-5">
               Four Steps to Secure Global Port Delivery
             </h2>
-            <p className="text-brand-muted text-base">
+            <p className="text-brand-silver text-base">
               Sending capital across oceans requires confidence. We protect our international buyers with a transparent, legally documented contract process.
             </p>
           </Reveal>
@@ -54,7 +54,7 @@ export default function ProcessSteps() {
         <div className="relative">
           
           {/* Animated Curved Arrow (Desktop Only) */}
-          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-12 z-0 overflow-visible pointer-events-none text-brand-red">
+          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-12 z-0 overflow-visible pointer-events-none text-brand-gold">
             <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1000 50">
               <motion.path 
                 initial={{ pathLength: 0 }}
@@ -88,38 +88,36 @@ export default function ProcessSteps() {
                   
                   {/* Step Icon & Number Badge */}
                   <div className="relative mb-6">
-                    <div className="w-20 h-20 bg-white rounded-2xl border border-black/5 shadow-md flex items-center justify-center text-brand-black group-hover:scale-105 group-hover:border-brand-red/30 transition-all duration-300 relative">
-                      <step.icon className="w-8 h-8 text-brand-black group-hover:text-brand-red transition-colors" />
+                    <div className="w-20 h-20 bg-brand-card rounded-[20px] border border-brand-border shadow-lg flex items-center justify-center text-white group-hover:-translate-y-1 transition-all duration-300 relative">
+                      <step.icon className="w-8 h-8 text-brand-silver group-hover:text-brand-gold transition-colors" />
                       
                       {/* Step Number Circle */}
-                      <span className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-brand-black text-white font-mono text-xs font-black flex items-center justify-center border-2 border-white shadow shadow-black/10">
+                      <span className="absolute -top-3.5 -right-3.5 w-8 h-8 rounded-full bg-brand-darker text-brand-gold font-mono text-xs font-black flex items-center justify-center border border-brand-gold/30 shadow-md">
                         {step.num}
                       </span>
                     </div>
                   </div>
 
                   {/* Text details */}
-                  <h3 className="font-display font-black text-lg text-brand-black mb-3 group-hover:text-brand-red transition-colors">
+                  <h3 className="font-display font-black text-lg text-white mb-3 group-hover:text-brand-gold transition-colors">
                     {step.title}
                   </h3>
                   
-                  <p className="text-xs md:text-sm text-brand-muted leading-relaxed max-w-xs">
+                  <p className="text-xs md:text-sm text-brand-silver leading-relaxed max-w-xs">
                     {step.desc}
                   </p>
 
                   {/* Indicator Arrow for Tablet/Mobile */}
-                  {idx < 3 && (
-                    <div className="lg:hidden mt-6 text-black/20">
-                      <ArrowRight className="w-5 h-5 rotate-90 md:rotate-0" />
+                  {idx < steps.length - 1 && (
+                    <div className="lg:hidden mt-8 text-brand-gold/50">
+                      <ArrowRight className="w-6 h-6 rotate-90 md:rotate-0" />
                     </div>
                   )}
                 </div>
               </Reveal>
             ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

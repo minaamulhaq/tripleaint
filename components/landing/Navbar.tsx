@@ -60,7 +60,7 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-brand-black/90 backdrop-blur-md py-4 border-b border-white/10 shadow-lg shadow-black/20"
+          ? "bg-brand-darker/95 backdrop-blur-md py-4 border-b border-brand-border shadow-lg shadow-black/50"
           : "bg-transparent py-6"
           }`}
       >
@@ -74,6 +74,7 @@ export default function Navbar() {
                 width={240}
                 height={60}
                 className="h-9 lg:h-12 w-auto rounded-lg"
+                style={{ filter: "brightness(0) invert(1)" }} // Simple white logo for dark theme
                 unoptimized
                 priority
               />
@@ -89,14 +90,14 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={`relative text-sm font-semibold transition-colors py-2 ${
-                    isActive ? "text-white" : "text-white hover:text-brand-red"
+                    isActive ? "text-brand-gold" : "text-brand-silver hover:text-white"
                   }`}
                 >
                   {link.label}
                   {isActive && (
                     <motion.span
                       layoutId="activeUnderline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-red"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-gold"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -107,14 +108,11 @@ export default function Navbar() {
 
           {/* Action CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <div className="flex items-center gap-1.5 text-xs text-white font-semibold bg-white/10 px-2.5 py-1 rounded-full border border-white/20">
-              <ShieldCheck className="w-3.5 h-3.5" /> Licensed Exporter
-            </div>
             <Link
               href="/inventory"
-              className="inline-flex items-center gap-2 bg-gradient-to-br from-brand-red to-brand-red-dark text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.03] shadow-md shadow-brand-red/20"
+              className="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-bold text-sm px-6 h-[54px] rounded-[14px] transition-all duration-300 shadow-lg shadow-brand-gold/10 hover:shadow-brand-gold/20"
             >
-              BUY NOW <ArrowRight className="w-4 h-4" />
+              Buy Now <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -145,17 +143,18 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-0 bottom-0 w-80 bg-brand-black p-8 flex flex-col border-l border-white/10"
+              className="absolute right-0 top-0 bottom-0 w-80 bg-brand-darker p-8 flex flex-col border-l border-brand-border"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-12">
-                <Link href="/" onClick={() => setIsOpen(false)} className="bg-transparent rounded-xl py-1">
+                <Link href="/" onClick={() => setIsOpen(false)} className="bg-transparent py-1">
                   <Image
                     src="/logo/triple-a-logo.png"
                     alt="Triple A International"
                     width={180}
                     height={40}
                     className="h-8 w-auto rounded-lg"
+                    style={{ filter: "brightness(0) invert(1)" }}
                     unoptimized
                   />
                 </Link>
@@ -180,12 +179,12 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`text-lg font-semibold py-1 flex items-center justify-between border-b border-white/10 ${
-                          isActive ? "text-brand-red" : "text-white hover:text-brand-red"
+                        className={`text-lg font-semibold py-3 flex items-center justify-between border-b border-brand-divider ${
+                          isActive ? "text-brand-gold" : "text-brand-silver hover:text-white"
                         }`}
                       >
                         {link.label}
-                        <ArrowRight className={`w-4 h-4 ${isActive ? "text-brand-red" : "text-white/40"}`} />
+                        <ArrowRight className={`w-4 h-4 ${isActive ? "text-brand-gold" : "opacity-0 group-hover:opacity-100 text-brand-silver"}`} />
                       </Link>
                     </motion.div>
                   );
@@ -193,15 +192,12 @@ export default function Navbar() {
               </div>
 
               <div className="mt-auto flex flex-col gap-4">
-                <div className="flex items-center justify-center gap-2 text-xs text-white font-semibold bg-white/10 py-2 rounded-lg border border-white/20">
-                  <ShieldCheck className="w-4 h-4" /> Official Licensing Certified
-                </div>
                 <Link
                   href="/inventory"
                   onClick={() => setIsOpen(false)}
-                  className="w-full text-center bg-gradient-to-br from-brand-red to-brand-red-dark text-white font-semibold py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brand-red/20"
+                  className="w-full text-center bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-bold py-4 rounded-[14px] transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-brand-gold/10"
                 >
-                  BUY NOW <ArrowRight className="w-4 h-4" />
+                  Buy Now <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </motion.div>

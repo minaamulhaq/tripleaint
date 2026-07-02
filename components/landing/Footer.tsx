@@ -4,7 +4,7 @@ import { Mail, Phone, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-black text-white pt-16 pb-8 border-t border-white/5 relative">
+    <footer className="bg-brand-darker text-white pt-16 pb-8 border-t border-brand-border relative">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           
@@ -17,14 +17,15 @@ export default function Footer() {
                 width={200} 
                 height={50} 
                 className="h-10 lg:h-14 w-auto rounded-lg" 
+                style={{ filter: "brightness(0) invert(1)" }}
                 unoptimized
               />
             </Link>
-            <p className="font-display italic text-brand-silver text-sm font-semibold mb-4">
-              Used Cars • Parts • Export
+            <p className="font-display italic text-brand-gold text-sm font-semibold mb-4">
+              LHD Vehicles • Machinery • Parts
             </p>
-            <p className="text-white/60 text-xs leading-relaxed max-w-sm mb-6">
-              Certified B2B exporter of heavy construction machinery, agricultural tractors, engines, and passenger vehicles from Taiwan to buyers worldwide.
+            <p className="text-brand-silver text-xs leading-relaxed max-w-sm mb-6">
+              Certified B2B exporter of heavy construction machinery, engines, and premium LHD passenger vehicles from Taiwan to buyers worldwide.
             </p>
             <div className="flex items-center gap-1.5 text-[11px] text-brand-silver font-medium bg-brand-silver/10 px-3 py-1 rounded-full border border-brand-silver/20">
               <ShieldCheck className="w-3.5 h-3.5" /> JUMVEA Member License No. 49302
@@ -36,13 +37,13 @@ export default function Footer() {
             <h4 className="font-display font-bold text-sm uppercase tracking-wider text-white/40 mb-4">
               Corporate Directory
             </h4>
-            <div className="flex flex-col gap-2.5 text-xs text-white/70">
-              <a href="#about" className="hover:text-brand-red transition-colors">Why Sourced From Us</a>
-              <a href="#inventory" className="hover:text-brand-red transition-colors">Featured Yard Stock</a>
-              <a href="#how-to-buy" className="hover:text-brand-red transition-colors">Port Import Stepper</a>
-              <a href="#services" className="hover:text-brand-red transition-colors">Container Dismantling & CKD</a>
-              <a href="#destinations" className="hover:text-brand-red transition-colors">Global Export Ports</a>
-              <a href="#gallery" className="hover:text-brand-red transition-colors">Yard Dispatch Gallery</a>
+            <div className="flex flex-col gap-2.5 text-xs text-brand-silver">
+              <a href="#about" className="hover:text-brand-gold transition-colors">Why Sourced From Us</a>
+              <a href="#inventory" className="hover:text-brand-gold transition-colors">Featured Yard Stock</a>
+              <a href="#how-to-buy" className="hover:text-brand-gold transition-colors">Port Import Stepper</a>
+              <a href="#services" className="hover:text-brand-gold transition-colors">Container Dismantling & CKD</a>
+              <a href="#destinations" className="hover:text-brand-gold transition-colors">Global Export Ports</a>
+              <a href="#gallery" className="hover:text-brand-gold transition-colors">Yard Dispatch Gallery</a>
             </div>
           </div>
 

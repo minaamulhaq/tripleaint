@@ -48,7 +48,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${sora.variable} ${barlow.variable} h-full antialiased overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col bg-brand-black overflow-x-hidden w-full relative">
+      <body className="min-h-full flex flex-col bg-brand-dark overflow-x-hidden w-full relative">
         {children}
         <FloatingContact />
       </body>
